@@ -64,6 +64,7 @@ display: grid;
 }
 
 .btn4 {
+    display: flex;
     background-color: var(--before-color);
     color: white;
     
