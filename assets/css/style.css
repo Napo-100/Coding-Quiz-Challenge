@@ -12,7 +12,8 @@
 .header {
     display: flex;
     justify-content: space-between;
-    margin-bottom: 100px;
+    margin: 10px 10px 100px 0;
+
 }
 
 .header a {
@@ -36,8 +37,7 @@ margin-bottom: 15px;
 .welcome {
     margin-bottom: 10px;
     text-align: center;
-    width: 100%;
-    
+    width: 100%; 
 }
 
 .container {
@@ -60,8 +60,6 @@ margin-bottom: 15px;
     padding: 10px;
     margin: 5px 0 5px 0;
 }
-
-
 
 #next-btn {
     display: flex;
@@ -92,10 +90,16 @@ margin-bottom: 15px;
 }
 
 .start-btn:hover,
-.next-btn:hover {
+.btn {
     background-color: green;
 }
 
 .hide {
     display: none;
+}
+
+#question {
+    margin-bottom: 15px;
+    font-size: 24px;
+    
 }
