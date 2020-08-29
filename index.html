@@ -14,7 +14,7 @@
         <a href="">View high scores</a>
         <p id="timer">Timer: 75</p>
     </header>
-        
+
     <div class="container">
         <div id="welcome-page" class="welcome-page">
             <h1 class="welcome">Welcome to the Coding Quiz!</h1>
@@ -22,13 +22,12 @@
                 with
                 a ten second penalty!</p>
         </div>
-        <div id="end-page" class = "end hide">
-            <h1 class ="over">All Done!</h1>
+        <div id="end-page" class="end hide">
+            <h1 class="over">All Done!</h1>
             <p id="score"></p>
             <p>Enter Initials:</p>
-            <input type="text" placeholder="Your initials" id="=initials"/>
-
-
+            <input type="text" placeholder="Your initials" id="=initials" />
+            <button id="submit-btn">Submit</button>
         </div>
         <div id="question-container" class="hide">
             <div id="question">Question</div>
@@ -45,10 +44,27 @@
     <div class="controls">
         <button id="start-btn" class="start-btn" type="submit">Start Quiz</button>
     </div>
+    </div>
+
+    <div id="high-scores" class="scores hide">
+        <h2>High Scores</h2>
+
+        </br>
+        </br>
+
+        <ol id="newScores"></ol>
+
+        </br>
+        </br>
+
+        <a href="index.html"><button>Go Back</button></a>
+        <button id="clear">Clear Highscores</button>
+    </div>
+
 
     </div>
 
-   
+
 
     <script src="assets/js/script.js"></script>
 </body>
