@@ -32,7 +32,13 @@ const questionContainerElement = document.getElementById('question-container')
 const questionElement = document.getElementById('question')
 const answerButtonsElement = document.getElementById('answer-buttons')
 const welcomePageElements = document.getElementById('welcome-page')
+const endGameElements = document.getElementById('end-page')
+const scoreElement = document.getElementById('score')
+const displayEl = document.getElementById('display')
+const displayEl2 = document.getElementById('display2')
+
 let questionCounter = 0;
+let timeLeft = questions.length * 15;                                                        
 
 const answer1 = document.getElementById("btn1");
 const answer2 = document.getElementById("btn2");
@@ -43,7 +49,7 @@ const answer4 = document.getElementById("btn4");
 
 // Timer countdown from 75 seconds
 function countDown() {
-    var timeLeft = 75;                         
+                            
 
     var timeInterval = setInterval(function(){
 
@@ -51,10 +57,13 @@ function countDown() {
             timerEl.textContent = "Timer:  " + timeLeft;
             timeLeft--
         }
+        
         else {
             timerEl.textContent = "Timer:  " + timeLeft;
             clearInterval(timeInterval);
+            endGame();
         }
+        
 
     }, 1000);
         
@@ -74,34 +83,27 @@ var createQuestionElement = function(index) {
 
 var checkAnswer = function(event) {
     var correctAnswer = questions[questionCounter].correctAnswer
-    var currentAnswer = event.target.textContent    
+    var currentAnswer = event.target.textContent   
+    displayEl.classList.remove('hide') 
+    displayEl2.classList.remove('hide')
+    
     if (currentAnswer === correctAnswer) {
-        alert("Correct!")
+        displayEl2.classList.add('hide')
+        displayEl.textContent = "-----------Correct!-----------"
     } else {
-        alert("False")
+        displayEl.classList.add('hide')
+        displayEl2.textContent = "-----------Wrong!-----------" 
     }
-
+    
     questionCounter++;
+    
     createQuestionElement();
 }
 
 
-// function setNextQuestion(){
-//     showQuestion(shuffledQuestions[currentQuestionIndex])
-// }
 
-// function showQuestion(question) {
-//     questionElement.innerText =question.question
-    
-    
-// }
-
-//  function selectAnswer(){
-
-// }
 
 var startGame = function(){
-    console.log("started")
     startButton.classList.add('hide')
     // shuffledQuestions = questions.sort(() => Math.random() - .5)
     // currentQuestionIndex = 0
@@ -112,9 +114,17 @@ var startGame = function(){
     createQuestionElement();
     }
 
+  var endGame = function(){
+    questionContainerElement.classList.add('hide')
+       endGameElements.classList.remove('hide')
+       scoreElement.textContent = "Your final score is " + timeLeft;
+  }  
+
 
 startButton.addEventListener('click', startGame)
 answer1.addEventListener("click", checkAnswer)
 answer2.addEventListener("click", checkAnswer)
 answer3.addEventListener("click", checkAnswer)
 answer4.addEventListener("click", checkAnswer)
+
+console.log(questionCounter)

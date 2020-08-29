@@ -5,7 +5,7 @@
 }
 
 :root {
-    --before-color: #000080;
+    --before-color: #008080;
     --after-color: #008080;
 }
 
@@ -54,24 +54,14 @@ margin-bottom: 15px;
 } 
 
 .btn {
-    width: 80%;
+    width: 100%;
     background-color: var(--before-color);
     color: white;
     padding: 10px;
     margin: 5px 0 5px 0;
 }
 
-#next-btn {
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: center;
-    margin-top: 10px; 
-    width: 80%;
-}
 
-.btn:hover {
-    background-color: var(--after-color);
-}
 
 .controls {
     display: flex;
@@ -90,7 +80,7 @@ margin-bottom: 15px;
 }
 
 .start-btn:hover,
-.btn {
+.btn:hover{
     background-color: green;
 }
 
@@ -103,3 +93,27 @@ margin-bottom: 15px;
     font-size: 24px;
     
 }
+
+.correct {
+    width: 100%;
+    font-size: 36px;
+    font-weight: bold;
+    margin-top: 10px;
+    text-align: center;
+    border-top: 3px solid gray;
+    border-bottom: 3px solid gray;
+    background-color: green;
+}
+
+
+.incorrect {
+    width: 100%;
+    font-size: 36px;
+    font-weight: bold;
+    margin-top: 10px;
+    text-align: center;
+    border-top: 3px solid gray;
+    border-bottom: 3px solid gray;
+    background-color: red;
+}
+
