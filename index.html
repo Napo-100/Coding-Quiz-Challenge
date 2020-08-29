@@ -11,7 +11,7 @@
 
 <body>
     <header class="header">
-        <a href="">View high scores</a>
+        <a href="scores.html">View high scores</a>
         <p id="timer">Timer: 75</p>
     </header>
 
@@ -23,11 +23,12 @@
                 a ten second penalty!</p>
         </div>
         <div id="end-page" class="end hide">
-            <h1 class="over">All Done!</h1>
+            <h2 class="over">All Done!</h2>
             <p id="score"></p>
-            <p>Enter Initials:</p>
-            <input type="text" placeholder="Your initials" id="=initials" />
-            <button id="submit-btn">Submit</button>
+            <p>Enter Initials:
+                <input type="text" placeholder="Your initials" id="initials" />
+                <button id="submit-btn" type="button">Submit</button>
+            </p>
         </div>
         <div id="question-container" class="hide">
             <div id="question">Question</div>
@@ -46,23 +47,6 @@
     </div>
     </div>
 
-    <div id="high-scores" class="scores hide">
-        <h2>High Scores</h2>
-
-        </br>
-        </br>
-
-        <ol id="newScores"></ol>
-
-        </br>
-        </br>
-
-        <a href="index.html"><button>Go Back</button></a>
-        <button id="clear">Clear Highscores</button>
-    </div>
-
-
-    </div>
 
 
 

@@ -74,10 +74,6 @@ margin-bottom: 15px;
     padding: 10px 20px;
 }
 
-.next-btn {
-    font-size: 1rem;
-    padding: 10px 20px;
-}
 
 .start-btn:hover,
 .btn:hover{
@@ -115,5 +111,37 @@ margin-bottom: 15px;
     border-top: 3px solid gray;
     border-bottom: 3px solid gray;
     background-color: red;
+}
+
+.over {
+    text-align: center;
+    font-weight: bolder;
+    font-size: 40px;
+    margin-bottom: 15px;
+}
+
+#score {
+    font-size: 26px;
+    font-family: 'Times New Roman', Times, serif;
+    margin-bottom: 10px;
+}
+
+#submit-btn {
+    margin-top: 10px;
+    width: 100%;
+    font-size: 1.5rem;
+    font-weight: bold;
+    padding: 10px 20px;
+    background-color: cornflowerblue;
+    cursor: pointer;
+}
+
+.scores {
+    text-align: center;
+}
+
+.scores ol {
+    text-align: left;
+    padding-left: 47.5%;
 }
 

@@ -1,5 +1,4 @@
 //Questions
-
 const questions = [{
     question: "Which of the following is not a commonly used data type?",
     answers: [ "Alerts", "Strings", "Booleans", "Numbers"],
@@ -27,17 +26,24 @@ const questions = [{
 }];
 
 const timerEl = document.getElementById("timer");
+//buttons
 const startButton = document.getElementById('start-btn')
+const answerButtonsElement = document.getElementById('answer-buttons')
+const submitButton = document.getElementById('submit-btn')
+
+
 const questionContainerElement = document.getElementById('question-container')
 const questionElement = document.getElementById('question')
-const answerButtonsElement = document.getElementById('answer-buttons')
+
 const welcomePageElements = document.getElementById('welcome-page')
 const endGameElements = document.getElementById('end-page')
 const scoreElement = document.getElementById('score')
 const displayEl = document.getElementById('display')
 const displayEl2 = document.getElementById('display2')
-const submitButton = document.getElementById('submit-btn')
-let initialsEl = document.getElementById('initials')
+
+const initialsEl = document.getElementById('initials')
+const scoresEl = document.getElementById('high-scores')
+const newScore = document.getElementById('newScores')
 
 let questionCounter = 0;
 let timeLeft = questions.length * 15;     
@@ -62,7 +68,6 @@ function countDown() {
             endGame();
         }
     }
-
 
 
 var createQuestionElement = function(index) {
@@ -121,54 +126,48 @@ var endGame = function(){
 
        setTimeout(function() {
            displayEl.setAttribute("class", "hide");
-       }, 2000);
+       }, 1000);
        setTimeout(function() {
            displayEl2.setAttribute("class", "hide");
-       }, 2000);
+       }, 1000);
+       highScore();
+  }
+
+
+  function highScore(){
+    submitButton.addEventListener("click", function(event) {
+        window.location.href="scores.html"
+    
+    var id = initialsEl.value
+    var score = timeLeft;
+    
+    if(id !== "") {
+        var newScore = {
+            id,
+            score
+        }
+
+        var highscores = JSON.parse(window.localStorage.getItem("highscores")) || [];
+        highscores.push(newScore);
+        window.localStorage.setItem("highscores", JSON.stringify(highscores))   
+    }
+
    
+    highscores.sort(function(a,b){
+        return b.score - a.score
+    })
+    
+    highscores.forEach(function(score){
+        var li = document.createElement("li");
+        li.innerHTML = "<h5>" + score.id + "  " + score.score + "</h5>"
+        var olEl = document.getElementById('newScores');
+        olEl.appendChild(li)
+    })
+    
+    console.log(highscores);
+    
+ })
   }
-
-  function saveScore(){
-
-    var ID = initialsEl.value.trim()
-
-    if (ID !== "") {
-        var highScores =
-        JSON.parse(window.localStorage.getItem("newScores")) || [];
-
-        var newTime = {
-            score: timeLeft,
-            intials: ID,
-        };
-
-    highScores.push(newTime);
-    localStorage.setItem("newScores", JSON.stringify(highScores));
-}
-
-printHighScores()
-  }
-
-function printHighScores() {
-    scoreElement.setAttribute("class", "hide")
-    endGameElements.setAttribute("class", "hide")
-        // either get scores from localstorage or set to empty array
-    var highscores = JSON.parse(window.localStorage.getItem("newScores")) || [];
-
-    // Uses a sort function to place higher scores on top by comparing each score before being plugged into the forEach function
-    highscores.sort(function(a, b) {
-        return b.score - a.score;
-    });
-
-    highscores.forEach(function(score) {
-        // Will make each indiviual input for scores be placed in as initials and scores
-        var liTag = document.createElement("li");
-        liTag.textContent = score.initials + " " + score.score;
-
-        // with plug in the list elements into the ordered list element in html via newScores id
-        var olEl = document.getElementById("newScores");
-        olEl.appendChild(liTag);
-    });
-}
 
   
 
@@ -177,4 +176,3 @@ answer1.addEventListener("click", checkAnswer)
 answer2.addEventListener("click", checkAnswer)
 answer3.addEventListener("click", checkAnswer)
 answer4.addEventListener("click", checkAnswer)
-submitButton.addEventListener('click', saveScore)
