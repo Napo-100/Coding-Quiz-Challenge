@@ -30,17 +30,23 @@ const timerEl = document.getElementById("timer");
 const startButton = document.getElementById('start-btn')
 const answerButtonsElement = document.getElementById('answer-buttons')
 const submitButton = document.getElementById('submit-btn')
+const answer1 = document.getElementById("btn1");
+const answer2 = document.getElementById("btn2");
+const answer3 = document.getElementById("btn3");
+const answer4 = document.getElementById("btn4");
 
-
+//questions
 const questionContainerElement = document.getElementById('question-container')
 const questionElement = document.getElementById('question')
 
+//page elements
 const welcomePageElements = document.getElementById('welcome-page')
 const endGameElements = document.getElementById('end-page')
 const scoreElement = document.getElementById('score')
 const displayEl = document.getElementById('display')
 const displayEl2 = document.getElementById('display2')
 
+//high score page elements
 const initialsEl = document.getElementById('initials')
 const scoresEl = document.getElementById('high-scores')
 const newScore = document.getElementById('newScores')
@@ -52,10 +58,7 @@ let questionCounter = 0;
 let timeLeft = questions.length * 15;     
                                               
 
-const answer1 = document.getElementById("btn1");
-const answer2 = document.getElementById("btn2");
-const answer3 = document.getElementById("btn3");
-const answer4 = document.getElementById("btn4");
+
 
 // let shuffledQuestions, currentQuestionIndex
 
@@ -139,36 +142,42 @@ var endGame = function(){
 
   function highScore(){
     submitButton.addEventListener("click", function(event) {
-        scoresEl.classList.remove('hide');
-        endGameElements.classList.add('hide');
-        containerEl.classList.add('hide')
-        viewScoreList.classList.add('hide')
+        
     
     var id = initialsEl.value
     var score = timeLeft;
-    
-    if(id !== "") {
+    var highscores = JSON.parse(window.localStorage.getItem("highscores")) || [];
+    if(id.length > 0) {
         var newScore = {
             id,
             score
         }
-
-        var highscores = JSON.parse(window.localStorage.getItem("highscores")) || [];
+        console.log(id)
+        scoresEl.classList.remove('hide');
+        endGameElements.classList.add('hide');
+        containerEl.classList.add('hide')
+        viewScoreList.classList.add('hide')
         highscores.push(newScore);
         window.localStorage.setItem("highscores", JSON.stringify(highscores)); 
-            
+           
+        if(highscores !== undefined) {
+            highscores.sort(function(a,b){
+                return b.score - a.score
+            })
+            highscores.forEach(function(score){
+                console.log(score)
+                var li = document.createElement("li");
+                li.innerHTML = "<h5>" + score.id + "  " + score.score + "</h5>"
+                var olEl = document.getElementById('newScores');
+                olEl.appendChild(li)
+            })
+        }
     }
    
-    highscores.sort(function(a,b){
-        return b.score - a.score
-    })
     
-    highscores.forEach(function(score){
-        var li = document.createElement("li");
-        li.innerHTML = "<h5>" + score.id + "  " + score.score + "</h5>"
-        var olEl = document.getElementById('newScores');
-        olEl.appendChild(li)
-    })
+    
+    
+    
     
     console.log(highscores);
     

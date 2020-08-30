@@ -48,17 +48,23 @@ margin-bottom: 15px;
     justify-content: center;
 }
 
-.buttons {
+/* .buttons {
     justify-content: center;
-    align-items: center;
-} 
+     align-items: center; 
+}  */
+
+#question-container {
+    width: 60%;
+
+}
 
 .btn {
     width: 100%;
     background-color: var(--before-color);
     color: white;
     padding: 10px;
-    margin: 5px 0 5px 0;
+    margin: 5px 0 5px 0; 
+    font-size: 20px;   
 }
 
 
@@ -87,8 +93,8 @@ margin-bottom: 15px;
 #question {
     margin-bottom: 15px;
     font-size: 24px;
-    
 }
+
 
 .correct {
     width: 100%;
