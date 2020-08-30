@@ -122,7 +122,7 @@ var endGame = function(){
        endGameElements.classList.remove('hide')
        scoreElement.textContent = "Your final score is " + timeLeft;
        timerEl.classList.add('hide')
-       timerInterval = setInterval(countDown, 1000);
+    //    timerInterval = setInterval(countDown, 1000);
 
        setTimeout(function() {
            displayEl.setAttribute("class", "hide");
@@ -136,7 +136,8 @@ var endGame = function(){
 
   function highScore(){
     submitButton.addEventListener("click", function(event) {
-        window.location.href="scores.html"
+        scoresEl.classList.remove('hide');
+        endGameElements.classList.add('hide');
     
     var id = initialsEl.value
     var score = timeLeft;
@@ -149,9 +150,9 @@ var endGame = function(){
 
         var highscores = JSON.parse(window.localStorage.getItem("highscores")) || [];
         highscores.push(newScore);
-        window.localStorage.setItem("highscores", JSON.stringify(highscores))   
+        window.localStorage.setItem("highscores", JSON.stringify(highscores)); 
+            
     }
-
    
     highscores.sort(function(a,b){
         return b.score - a.score
@@ -169,8 +170,15 @@ var endGame = function(){
  })
   }
 
-  
+  function clearHighscores() {
+    localStorage.clear();
+          
+}
 
+
+
+
+document.getElementById("clear").onclick = clearHighscores;
 startButton.addEventListener('click', startGame)
 answer1.addEventListener("click", checkAnswer)
 answer2.addEventListener("click", checkAnswer)
