@@ -44,6 +44,9 @@ const displayEl2 = document.getElementById('display2')
 const initialsEl = document.getElementById('initials')
 const scoresEl = document.getElementById('high-scores')
 const newScore = document.getElementById('newScores')
+const viewScoreList = document.getElementById('highscore')
+const containerEl = document.getElementById('container')
+
 
 let questionCounter = 0;
 let timeLeft = questions.length * 15;     
@@ -138,6 +141,8 @@ var endGame = function(){
     submitButton.addEventListener("click", function(event) {
         scoresEl.classList.remove('hide');
         endGameElements.classList.add('hide');
+        containerEl.classList.add('hide')
+        viewScoreList.classList.add('hide')
     
     var id = initialsEl.value
     var score = timeLeft;
@@ -172,10 +177,42 @@ var endGame = function(){
 
   function clearHighscores() {
     localStorage.clear();
-          
+    newScore.classList.add('hide');
 }
 
+function viewHighScores(){
+    startButton.classList.add('hide')
+    welcomePageElements.classList.add('hide')
+    questionContainerElement.classList.add('hide')
+    displayEl.classList.add('hide') 
+    displayEl2.classList.add('hide')
+    timerEl.classList.add('hide')
+    // newScore.classList.remove('hide')
+    scoresEl.classList.remove('hide')
+    containerEl.classList.add('hide')
+    viewScoreList.classList.add('hide')
 
+    var highscores = JSON.parse(window.localStorage.getItem("highscores")) || [];
+    // highscores.push(newScore);
+    // window.localStorage.setItem("highscores", JSON.stringify(highscores)); 
+        
+
+
+highscores.sort(function(a,b){
+    return b.score - a.score
+})
+
+highscores.forEach(function(score){
+    var li = document.createElement("li");
+    li.innerHTML = "<h5>" + score.id + "  " + score.score + "</h5>"
+    var olEl = document.getElementById('newScores');
+    olEl.appendChild(li)
+})
+
+console.log(highscores);
+
+    
+}
 
 
 document.getElementById("clear").onclick = clearHighscores;
@@ -184,3 +221,4 @@ answer1.addEventListener("click", checkAnswer)
 answer2.addEventListener("click", checkAnswer)
 answer3.addEventListener("click", checkAnswer)
 answer4.addEventListener("click", checkAnswer)
+viewScoreList.addEventListener("click", viewHighScores)

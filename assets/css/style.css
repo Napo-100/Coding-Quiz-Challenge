@@ -145,3 +145,7 @@ margin-bottom: 15px;
     padding-left: 47.5%;
 }
 
+#highscore {
+    margin-left: 10px;
+    cursor: pointer;
+}
